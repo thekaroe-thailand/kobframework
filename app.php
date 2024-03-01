@@ -22,10 +22,17 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include 'app/models/UserModel.php';
-
     spl_autoload_register(function ($class) {
-        include 'app/controllers/' . $class . '.php';
+        $controllerPath = 'app/controllers/' . $class . '.php';
+        $modelPath = 'app/models/' . $class . '.php';
+
+        if (file_exists($controllerPath)) {
+            include $controllerPath;
+        }
+
+        if (file_exists($modelPath)) {
+            include $modelPath;
+        }
     });
 
     $route = $_GET['route'] ?? '/';
