@@ -1,0 +1,21 @@
+<?php
+require __DIR__.'/libs/cli/response.php';
+
+if (count($argv) < 2) {
+    kob_command_not_found();
+}
+
+$command = $argv[1];
+$arguments = array_slice($argv, 2);
+
+switch ($command) {
+    case 'new:controller':
+        require __DIR__.'/libs/cli/controller.php';
+        break;
+    case 'new:view':
+        require __DIR__.'/libs/cli/view.php';
+        break;
+    default:
+        kob_command_not_found();
+        break;
+}
