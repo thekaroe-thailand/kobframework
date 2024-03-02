@@ -12,13 +12,16 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 spl_autoload_register(function ($class) {
     $controllerPath = 'app/controllers/' . $class . '.php';
     $modelPath = 'app/models/' . $class . '.php';
+    $libPath = 'libs/' . $class . '.php';
 
-    if (file_exists($controllerPath)) {
-        include $controllerPath;
-    }
+    $arr = [$controllerPath, $modelPath, $libPath];
 
-    if (file_exists($modelPath)) {
-        include $modelPath;
+    for ($i = 0; $i < count($arr); $i++) {
+        $item = $arr[$i];
+
+        if (file_exists($item)) {
+            include $item;
+        }
     }
 });
 
