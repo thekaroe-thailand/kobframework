@@ -40,8 +40,9 @@
 
     $route = $_GET['route'] ?? '/';
 
-    list($controllerName, $methodName) = explode('/', trim($route, '/'));
-
+    $routeExploded = explode('/', trim($route, '/'));
+    list($controllerName, $methodName) = [$routeExploded[0], $routeExploded[1] ?? "index"];
+    
     $controllerName = ucfirst($controllerName) . 'Controller';
 
     if (class_exists($controllerName)) {
