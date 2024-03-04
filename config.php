@@ -1,5 +1,13 @@
 <?php
 
+//
+// web path from /var/www/htdocs
+//
+$webPath = '/kobframework-website';
+
+//
+// database
+//
 $db_provider = 'mysql';
 $db_username = 'root';
 $db_password = 'root';
