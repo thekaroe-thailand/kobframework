@@ -12,6 +12,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 /* Header */
 
-const MODE = 'API';
+const MODE = 'API'; // TODO: find a better way to set mode
 
 require_once 'loader.php';

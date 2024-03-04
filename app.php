@@ -20,7 +20,7 @@
 
 <body>
 <?php
-const MODE = 'WEB';
+const MODE = 'WEB'; // TODO: find a better way to set mode
 
 require_once 'loader.php';
 ?>
