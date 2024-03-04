@@ -2,6 +2,7 @@
 
 abstract class Controller
 {
+    /** @var array */
     protected $data;
 
     /**
