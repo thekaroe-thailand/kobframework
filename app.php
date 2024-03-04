@@ -1,3 +1,5 @@
+<?php require_once 'config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +44,7 @@
 
     $routeExploded = explode('/', trim($route, '/'));
     list($controllerName, $methodName) = [$routeExploded[0], $routeExploded[1] ?? "index"];
-    
+
     $controllerName = ucfirst($controllerName) . 'Controller';
 
     if (class_exists($controllerName)) {
@@ -51,10 +53,10 @@
         if (method_exists($controllerInstance, $methodName)) {
             $controllerInstance->$methodName();
         } else {
-            echo "404 - Method ".htmlentities($methodName)." Not Found";
+            echo "404 - Method " . htmlentities($methodName) . " Not Found";
         }
     } else {
-        echo "404 - Controller ".htmlentities($controllerName)." Not Found";
+        echo "404 - Controller " . htmlentities($controllerName) . " Not Found";
     }
     ?>
 </body>
