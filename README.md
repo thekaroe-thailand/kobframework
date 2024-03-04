@@ -6,10 +6,11 @@ KOB Framework is a PHP framework for web development.
 [![Author](https://img.shields.io/badge/author-Tavon_Seesenpila-green.svg)](https://facebook.com)
 
 call mvc website
-http://localhost/kobframework/app.php?route=home/index
+`http://localhost/kobframework/home` or 
+`http://localhost/kobframework/home/index`
 
 call REST Api
-http://localhost/kobframework/api.php?route=home/apiList
+`http://localhost/kobframework/api/home/apiList`
 
 my website
 www.kobframework.com

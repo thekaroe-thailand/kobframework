@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Rewrite when the path startsWith api/
+RewriteRule ^api/(.*)$ api.php?route=$1 [QSA,L]
+
+# Rewrite when not match above
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ app.php?route=$1 [QSA,L]

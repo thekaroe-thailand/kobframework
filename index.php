@@ -1,6 +1,6 @@
 <?php
 
-$indexPage = 'home/index';
+$indexPage = 'home';
 
-header('location: app.php?route=' . $indexPage);
+header('location: ' . $indexPage);
 
