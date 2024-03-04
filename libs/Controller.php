@@ -1,17 +1,27 @@
 <?php
 
-class Controller
+abstract class Controller
 {
+    /** @var array */
     protected $data;
-    public function view($view)
+
+    /**
+     * @param string $view
+     * @return void
+     */
+    public function view(string $view)
     {
         $data = $this->data;
-
         include 'app/views/' . $view . '.php';
     }
-    public function json($data)
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    public function json(array $data)
     {
-        header('content-type: text/json');
+        header('Content-Type: application/json');
         echo json_encode($data);
     }
 }
