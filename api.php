@@ -1,4 +1,6 @@
 <?php
+require_once 'config.php';
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -37,8 +39,8 @@ if (class_exists($controllerName)) {
     if (method_exists($controllerInstance, $methodName)) {
         $controllerInstance->$methodName();
     } else {
-        echo "404 - Method ".htmlentities($methodName)." Not Found";
+        echo "404 - Method " . htmlentities($methodName) . " Not Found";
     }
 } else {
-    echo "404 - Controller ".htmlentities($controllerName)." Not Found";
+    echo "404 - Controller " . htmlentities($controllerName) . " Not Found";
 }
