@@ -1,4 +1,5 @@
 <?php
+
 require_once 'config.php';
 
 ini_set('display_errors', 1);
@@ -12,26 +13,26 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 spl_autoload_register(function ($class) {
-    $controllerPath = 'app/controllers/' . $class . '.php';
-    $modelPath = 'app/models/' . $class . '.php';
-    $libPath = 'libs/' . $class . '.php';
+    $paths = [
+        'app/controllers/',
+        'app/models/',
+        'libs/'
+    ];
 
-    $arr = [$controllerPath, $modelPath, $libPath];
-
-    for ($i = 0; $i < count($arr); $i++) {
-        $item = $arr[$i];
-
-        if (file_exists($item)) {
-            include $item;
+    foreach ($paths as $path) {
+        $file = $path . $class . '.php';
+        if (file_exists($file)) {
+            include $file;
+            return; // if already found the file, then stop continue the loop
         }
     }
 });
 
 $route = $_GET['route'] ?? '/';
 
-list($controllerName, $methodName) = explode('/', trim($route, '/'));
-
-$controllerName = ucfirst($controllerName) . 'Controller';
+$routeExploded = array_filter(explode('/', trim($route, '/'))); // ex. /user/login => ['user', 'login']
+$controllerName = ucfirst(array_shift($routeExploded) ?? 'Index') . 'Controller'; // ex. user => UserController
+$methodName = array_shift($routeExploded) ?? 'index';
 
 if (class_exists($controllerName)) {
     $controllerInstance = new $controllerName;
@@ -39,8 +40,10 @@ if (class_exists($controllerName)) {
     if (method_exists($controllerInstance, $methodName)) {
         $controllerInstance->$methodName();
     } else {
+        http_response_code(404); // send 404 status code
         echo "404 - Method " . htmlentities($methodName) . " Not Found";
     }
 } else {
+    http_response_code(404); // send 404 status code
     echo "404 - Controller " . htmlentities($controllerName) . " Not Found";
 }
