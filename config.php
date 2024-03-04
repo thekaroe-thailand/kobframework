@@ -3,7 +3,7 @@
 //
 // web path from /var/www/htdocs
 //
-define('PATH', '/kobframework-website');
+define('PATH', '/kobframework-website'); // in windows = kobframwork-website, in linux = ''
 define("CONNECT_DB", false);
 
 //
