@@ -13,17 +13,17 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 spl_autoload_register(function ($class) {
-    $controllerPath = 'app/controllers/' . $class . '.php';
-    $modelPath = 'app/models/' . $class . '.php';
-    $libPath = 'libs/' . $class . '.php';
+    $paths = [
+        'app/controllers/',
+        'app/models/',
+        'libs/'
+    ];
 
-    $arr = [$controllerPath, $modelPath, $libPath];
-
-    for ($i = 0; $i < count($arr); $i++) {
-        $item = $arr[$i];
-
-        if (file_exists($item)) {
-            include $item;
+    foreach ($paths as $path) {
+        $file = $path . $class . '.php';
+        if (file_exists($file)) {
+            include $file;
+            return; // if already found the file, then stop continue the loop
         }
     }
 });
