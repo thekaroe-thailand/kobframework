@@ -51,10 +51,10 @@
         if (method_exists($controllerInstance, $methodName)) {
             $controllerInstance->$methodName();
         } else {
-            echo "404 - Method $methodName Not Found";
+            echo "404 - Method ".htmlentities($methodName)." Not Found";
         }
     } else {
-        echo "404 - Controller $controllerName Not Found";
+        echo "404 - Controller ".htmlentities($controllerName)." Not Found";
     }
     ?>
 </body>
