@@ -1,4 +1,7 @@
 <?php
+
+require_once 'config.php';
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -27,9 +30,9 @@ spl_autoload_register(function ($class) {
 
 $route = $_GET['route'] ?? '/';
 
-list($controllerName, $methodName) = explode('/', trim($route, '/'));
-
-$controllerName = ucfirst($controllerName) . 'Controller';
+$routeExploded = array_filter(explode('/', trim($route, '/'))); // ex. /user/login => ['user', 'login']
+$controllerName = ucfirst(array_shift($routeExploded) ?? 'Index') . 'Controller'; // ex. user => UserController
+$methodName = array_shift($routeExploded) ?? 'index';
 
 if (class_exists($controllerName)) {
     $controllerInstance = new $controllerName;
@@ -37,8 +40,10 @@ if (class_exists($controllerName)) {
     if (method_exists($controllerInstance, $methodName)) {
         $controllerInstance->$methodName();
     } else {
-        echo "404 - Method ".htmlentities($methodName)." Not Found";
+        http_response_code(404); // send 404 status code
+        echo "404 - Method " . htmlentities($methodName) . " Not Found";
     }
 } else {
-    echo "404 - Controller ".htmlentities($controllerName)." Not Found";
+    http_response_code(404); // send 404 status code
+    echo "404 - Controller " . htmlentities($controllerName) . " Not Found";
 }
