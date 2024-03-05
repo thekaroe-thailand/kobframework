@@ -30,4 +30,16 @@ final class HomeController extends Controller
 
         $this->json($users);
     }
+
+    public function imageAndLink()
+    {
+        $img = new Image();
+        $img->width = '200px';
+        $img->height = '200px';
+        $img->src = 'logo.png';
+
+        $this->data['imgFromController'] = $img;
+
+        $this->view('imageAndLink');
+    }
 }
