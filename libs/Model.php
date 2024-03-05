@@ -2,10 +2,12 @@
 
 class Model
 {
-    protected function findMany()
+    protected $tableName;
+
+    protected function findMany($options = [])
     {
     }
-    protected function findOne()
+    protected function findOne($options = [])
     {
     }
     protected function create($data = [])
