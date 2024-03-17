@@ -2,7 +2,7 @@
 
 KOB Framework is a PHP framework for web development.
 
-![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Author](https://img.shields.io/badge/author-Tavon_Seesenpila-green.svg)](https://facebook.com)
 
