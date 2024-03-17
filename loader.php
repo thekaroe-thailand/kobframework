@@ -34,7 +34,18 @@ try {
         $controllerInstance = new $controllerName;
 
         if (method_exists($controllerInstance, $methodName)) {
-            $controllerInstance->$methodName();
+            $route ??= $_GET['route'];
+
+            $params ??= $_GET;
+            $params ??= $_POST;
+            $params ??= $_PUT;
+            $params ??= $_DELETE;
+
+            if (!empty($route)) {
+                unset($params['route']);
+            }
+
+            $controllerInstance->$methodName($params);
         } else {
             throw new Exception("Method Not Found: $methodName", 404);
         }

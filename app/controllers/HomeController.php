@@ -7,7 +7,6 @@ final class HomeController extends Controller
         $this->data = ['message' => 'Hello Kob PHP Framework'];
         $this->view('home');
     }
-
     public function list()
     {
         $arr = [];
@@ -19,7 +18,6 @@ final class HomeController extends Controller
         $this->data = ['users' => $arr];
         $this->view('list');
     }
-
     public function apiList()
     {
         $users = [
@@ -30,7 +28,6 @@ final class HomeController extends Controller
 
         $this->json($users);
     }
-
     public function imageAndLink()
     {
         $img = new Image();
@@ -41,5 +38,15 @@ final class HomeController extends Controller
         $this->data['imgFromController'] = $img;
 
         $this->view('imageAndLink');
+    }
+    public function myGet()
+    {
+        $this->doGet();
+        $this->json(['id' => $this->params('id')]);
+    }
+    public function myPost()
+    {
+        $this->doPost();
+        $this->json($this->body());
     }
 }
